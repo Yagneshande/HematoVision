@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classification Result</title>
+    <link rel="stylesheet" href="static\style.css">
+</head>
+<body>
+    <div class="container result-container">
+        <header>
+            <h1>Classification Result</h1>
+        </header>
+
+        <div class="result-content">
+            <div class="image-preview">
+                <img src="{{ url_for('static', filename='images/' + image_file) }}" alt="Uploaded blood cell image">
+            </div>
+
+            <div class="prediction-result">
+                <div class="result-card">
+                    <h3>Predicted Cell Type:</h3>
+                    <p class="prediction">{{ prediction }}</p>
+                    <div class="confidence">Confidence: {{ confidence }}</div>
+                </div>
+
+                <div class="cell-info">
+                    <h4>About {{ prediction }}:</h4>
+                    <div class="info-content">
+                        {% if prediction == "Eosinophil" %}
+                        <p>Eosinophils are white blood cells that combat multicellular parasites and certain infections.</p>
+                        {% elif prediction == "Lymphocyte" %}
+                        <p>Lymphocytes are white blood cells that are part of the immune system, including B cells and T cells.</p>
+                        {% elif prediction == "Monocyte" %}
+                        <p>Monocytes are the largest type of white blood cell and can differentiate into macrophages.</p>
+                        {% else %}
+                        <p>Neutrophils are the most abundant white blood cells and form an essential part of the innate immune system.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="home.html" class="btn">Analyze Another Image</a>
+        </div>
+    </div>
+</body>
+</html>
